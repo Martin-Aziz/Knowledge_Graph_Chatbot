@@ -6,6 +6,7 @@ Tests NER entity extraction and REBEL relation parsing.
 import pytest
 from src.nlp.extractor import KnowledgeExtractor
 
+
 class TestEmptyInput:
     """Avoid expensive model initialization when nothing can be extracted."""
 
@@ -19,7 +20,6 @@ class TestEmptyInput:
         monkeypatch.setattr(extractor, "_load_models", unexpected_model_load)
 
         assert extractor.extract(text) == ([], [])
-
 
 
 class TestCyberEntityExtraction:
