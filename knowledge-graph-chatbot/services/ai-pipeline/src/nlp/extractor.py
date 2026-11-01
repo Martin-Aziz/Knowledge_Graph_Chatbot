@@ -125,10 +125,10 @@ class KnowledgeExtractor:
         Returns:
             Tuple of (entities, relations) extracted from the text.
         """
-        self._load_models()
-
         if not text or not text.strip():
             return [], []
+
+        self._load_models()
 
         logger.info(f"Extracting from text ({len(text)} chars)")
 

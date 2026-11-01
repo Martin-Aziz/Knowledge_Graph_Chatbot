@@ -7,6 +7,21 @@ import pytest
 from src.nlp.extractor import KnowledgeExtractor
 
 
+class TestEmptyInput:
+    """Avoid expensive model initialization when nothing can be extracted."""
+
+    @pytest.mark.parametrize("text", ["", " ", "\n\t"])
+    def test_empty_input_does_not_load_models(self, monkeypatch, text):
+        extractor = KnowledgeExtractor()
+
+        def unexpected_model_load():
+            pytest.fail("Empty input must not initialize or download NLP models")
+
+        monkeypatch.setattr(extractor, "_load_models", unexpected_model_load)
+
+        assert extractor.extract(text) == ([], [])
+
+
 class TestCyberEntityExtraction:
     """Test cybersecurity-specific entity detection via regex patterns."""
 
