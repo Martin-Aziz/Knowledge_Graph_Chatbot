@@ -73,3 +73,5 @@ neo4j/
 models/
 *.bin
 *.safetensors
+!knowledge-graph-chatbot/services/ai-pipeline/src/models/
+!knowledge-graph-chatbot/services/ai-pipeline/src/models/*.py
